@@ -2,7 +2,7 @@ const modeloUsuarios = require ("../model/usuariosModel");
 
 const agregar = (req,res)=>{
     let info = req.body;
-    const usuario = new modeloUsuario(info);
+    const usuario = new modeloUsuarios(info);
     usuario.save()
     .then((result)=>{
         return res.status(200).send({
