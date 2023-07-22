@@ -1,7 +1,8 @@
 const express = require("express"); //mandamos a llamar el frame de express
 const conexion = require ("./conexion/conexion")
 const router = require ("./routes/routerComida")
-const router2 = require ("./routes/routerUsuario")
+const routerU = require ("./routes/routerUsuario")
+
 
 const app = express(); //almacenamos express en una constante llamada app
 
@@ -12,7 +13,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 
 app.use("/comida",router)
-app.use("/usuarios",router2)
+app.use("/usuarios",routerU)
+
 
 app.listen(3000, ()=>{
     console.log("Servidor corriendo en el puerto 3000")//creamos el servidor en el puerto 3000
