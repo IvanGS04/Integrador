@@ -16,6 +16,7 @@ const pedidoSchema = Schema({
     telefono:{
         type:Number,
         required:true,
+        unique:true
     }
 })
 

@@ -3,6 +3,38 @@ const modeloPedido = require ("../model/pedidoModel");
 const agregar = (req,res)=>{
     let info = req.body;
     const pedido = new modeloPedido(info);
+
+    const {direccion, cliente, precio, telefono} = req.body;
+    if(typeof direccion === 'number'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo String",
+            status:"Error"
+            
+        })
+    }
+    if(typeof cliente === 'number'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo String",
+            status:"Error"
+            
+        })
+    }
+    if(typeof precio === 'string'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo Number",
+            status:"Error"
+            
+        })
+    }
+    if(typeof telefono === 'string'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo String",
+            status:"Error"
+            
+        })
+    }
+    
+    
     pedido.save()
     .then((result)=>{
         return res.status(200).send({
@@ -65,6 +97,35 @@ const editar = (req,res)=>{
     let consulta ={}
     consulta [req.params.key]=req.params.value
     let nuevo = req.body
+    const {direccion, cliente, precio, telefono} = req.body;
+    if(typeof direccion === 'number'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo String",
+            status:"Error"
+            
+        })
+    }
+    if(typeof cliente === 'number'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo String",
+            status:"Error"
+            
+        })
+    }
+    if(typeof precio === 'string'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo Number",
+            status:"Error"
+            
+        })
+    }
+    if(typeof telefono === 'string'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo String",
+            status:"Error"
+            
+        })
+    }
     modeloPedido.findOneAndUpdate(consulta,nuevo,{new:true})
     .then((resu)=>{
         return res.status(200).send({
