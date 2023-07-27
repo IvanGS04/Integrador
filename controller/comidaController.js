@@ -3,12 +3,7 @@ const modeloComida = require ("../model/comidaModel");
 const agregar = (req,res)=>{
     let info = req.body;
     const comida = new modeloComida(info);
-
-    if(req.file){
-        const{ filename} = req.file;
-        comida.setImgUrl(filename);
-
-        comida.save()
+    comida.save()
     .then((result)=>{
         return res.status(200).send({
             mensaje:"Pieza creada correctamente",
@@ -24,9 +19,7 @@ const agregar = (req,res)=>{
             
     })
 
-    }else{
-        console.log("no se subio ninguna imagen");
-    }
+   
 }
 
 const mostrarTodo = (req,res)=>{
@@ -74,6 +67,28 @@ const editar = (req,res)=>{
     let consulta ={}
     consulta [req.params.key]=req.params.value
     let nuevo = req.body
+    const {nombre, ingredientes,precio} = req.body;
+    if(typeof nombre === 'number'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo String",
+            status:"Error"
+            
+        })
+    }
+    if(typeof ingredientes === 'number'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo String",
+            status:"Error"
+            
+        })
+    }
+    if(typeof precio === 'string'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo Number",
+            status:"Error"
+            
+        })
+    }
     modeloComida.findOneAndUpdate(consulta,nuevo,{new:true})
     .then((resu)=>{
         return res.status(200).send({
