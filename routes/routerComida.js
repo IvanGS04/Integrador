@@ -6,8 +6,8 @@ const router = Router();
 
 router.get("/",comidaC.mostrarTodo)
       .post("/", upload.single('file'), comidaC.agregar)
-      .get("/:key/:value",comidaC.filtro)
-      .put("/:key/:value",comidaC.editar)
-      .delete("/:key/:value",comidaC.eliminar)
+      .get("/:key/:value", comidaC.filtro)
+      .put("/:id/:image",upload.single('file'), comidaC.editar)
+      .delete("/:id",comidaC.eliminar)
       
 module.exports=router
