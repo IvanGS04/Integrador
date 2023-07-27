@@ -1,6 +1,7 @@
 const express = require("express"); //mandamos a llamar el frame de express
 const conexion = require ("./conexion/conexion")
 const router = require ("./routes/routerComida")
+var bodyParser = require('body-parser');
 
 const app = express(); //almacenamos express en una constante llamada app
 
@@ -8,7 +9,7 @@ conexion();
 
 app.use(express.json())
 //decodifica la informacion y la convierte en formato JSON
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended: true}));
 
 app.use("/comida",router)
 // SET STORAGE

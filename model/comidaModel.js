@@ -24,9 +24,10 @@ const comidaSchema = Schema({
 })
 
 comidaSchema.methods.setImgUrl = function setImgUrl (filename){
-    const APP_HOST = "http://localhost"
-    const APP_PORT = "3000"
-    this.imgUrl = `${APP_HOST}:${APP_PORT}/public/${filename}`
+    //const APP_HOST = "http://localhost"
+    //const APP_PORT = "3000"
+    //`${APP_HOST}:${APP_PORT}/public/${filename}`
+    this.imgUrl = filename;
 
 }
 
