@@ -9,10 +9,15 @@ const upload = require("../uploads/storage");
 const agregar = (req,res)=>{
     let info = req.body;
     const comida = new modeloComida(info);
-    comida.save()
+
+    if(req.file){
+        const{ filename} = req.file;
+        comida.setImgUrl(filename);
+
+        comida.save()
     .then((result)=>{
         return res.status(200).send({
-            mensaje:"platillo creada correctamente",
+            mensaje:"Pieza creada correctamente",
             status:"OK",
             result
         })
@@ -25,6 +30,9 @@ const agregar = (req,res)=>{
             
     })
 
+    }else{
+        console.log("no se subio ninguna imagen");
+    }
    
 }
 
