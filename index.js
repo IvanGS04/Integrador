@@ -17,6 +17,8 @@ app.use(express.urlencoded({extended: true}));
 app.use("/comida",router)
 app.use("/pedidos",router2)
 app.use("/usuarios",router3)
+//mostrar imagen
+app.use('/public', express.static(`${__dirname}/uploads/img`));
 
 app.listen(3000, ()=>{
     console.log("Servidor corriendo en el puerto 3000")//creamos el servidor en el puerto 3000

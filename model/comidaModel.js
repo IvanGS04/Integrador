@@ -15,7 +15,6 @@ const comidaSchema = Schema({
     },
     precio:{
         type:Number,
-   
         required:true
     },
     imgUrl:{

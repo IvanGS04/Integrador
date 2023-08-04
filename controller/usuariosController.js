@@ -4,7 +4,7 @@ const agregarU = (req,res)=>{
     let info = req.body;
     const usuario = new modeloUsuario(info);
 
-    const {Nombre, Apellido, Telefono} = req.body;
+    const {Nombre, Apellido, Telefono, Correo, Password} = req.body;
     if(typeof Nombre === 'number'){
         return res.status(404).send({
             mensaje:"Error al registrar el usuario, debe ser tipo String",
@@ -53,9 +53,7 @@ const mostrarTodoU = (req,res)=>{
                 status:"OK"
             })
         }
-        return res.status(200).send({
-            resultado
-        })
+        return res.status(200).send(resultado)
     }).catch((err)=>{
         return res.status(404).send({
             mensaje:"Error al registrar el usuario",

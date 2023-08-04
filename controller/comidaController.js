@@ -9,6 +9,28 @@ const upload = require("../uploads/storage");
 const agregar = (req,res)=>{
     let info = req.body;
     const comida = new modeloComida(info);
+    const {nombre, ingredientes,precio} = req.body;
+    if(typeof nombre === 'number'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo String",
+            status:"Error"
+            
+        })
+    }
+    if(typeof ingredientes === 'number'){
+        return res.status(404).send({
+            mensaje:"Error al registrar el usuario, debe ser tipo String",
+            status:"Error"
+            
+        })
+    }
+    // if(typeof precio === 'string'){
+    //     return res.status(404).send({
+    //         mensaje:"Error al registrar el usuario, debe ser tipo Number",
+    //         status:"Error"
+            
+    //     })
+    // }
 
     if(req.file){
         const{ filename} = req.file;
@@ -31,7 +53,7 @@ const agregar = (req,res)=>{
     })
 
     }else{
-        console.log("no se subio ninguna imagen");
+        return res.status(500).send({mensaje:"falta imagen"})
     }
    
 }
@@ -45,9 +67,7 @@ const mostrarTodo = (req,res)=>{
                 status:"OK"
             })
         }
-        return res.status(200).send({
-            resultado
-        })
+        return res.status(200).send(resultado)
     }).catch((err)=>{
         return res.status(404).send({
             mensaje:"Error al registrar la pieza",
@@ -121,13 +141,13 @@ const editar = async (req,res)=>{
                         
                     })
                 }
-                if(typeof precio === 'string'){
-                    return res.status(404).send({
-                        mensaje:"Error al registrar el usuario, debe ser tipo Number",
-                        status:"Error"
+                // if(typeof precio === 'string'){
+                //     return res.status(404).send({
+                //         mensaje:"Error al registrar el usuario, debe ser tipo Number",
+                //         status:"Error"
                         
-                    })
-                }
+                //     })
+                // }
 
               modeloComida.findOneAndUpdate({_id:id}, nuevo ,{new:true})
               .then((resu)=>{
