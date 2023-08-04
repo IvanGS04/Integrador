@@ -146,10 +146,49 @@ const eliminarU = (req,res)=>{
     })
 }
 
+
+const Login = (req,res)=>{
+    let Correo =  req.body.Correo;
+    let Password = req.body.Password;
+
+    modeloUsuario.findOne({Correo:Correo})
+    .then((resultado)=>{
+        if(resultado){
+            if(resultado.Password == Password){
+                return res.status(202).send({
+                    mensaje:"Usuarios logueado",
+                    status:"OK"
+                    
+                })
+
+            }else{
+                return res.status(401).send({
+                    mensaje:"password incorrecto",
+                    status:"OK"
+                    
+                })
+            }
+        }else{
+            return res.status(404).send({
+                mensaje:"Correo invalido",
+                status:"Error"
+                
+            })}
+    }).catch((err)=>{
+        return res.status(404).send({
+            mensaje:"Correo invalido",
+            status:"Error",
+            err
+        })
+    })
+}
+
+
 module.exports={
     agregarU,
     mostrarTodoU,
     filtroU,
     editarU,
-    eliminarU
+    eliminarU,
+    Login
 }

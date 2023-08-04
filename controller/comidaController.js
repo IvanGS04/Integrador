@@ -14,6 +14,8 @@ const agregar = (req,res)=>{
         const{ filename} = req.file;
         comida.setImgUrl(filename);
 
+        
+
         comida.save()
     .then((result)=>{
         return res.status(200).send({
@@ -45,9 +47,9 @@ const mostrarTodo = (req,res)=>{
                 status:"OK"
             })
         }
-        return res.status(200).send({
+        return res.status(200).send(
             resultado
-        })
+        )
     }).catch((err)=>{
         return res.status(404).send({
             mensaje:"Error al registrar la pieza",
@@ -57,6 +59,8 @@ const mostrarTodo = (req,res)=>{
     })
 }
 
+
+
 const filtro = (req,res)=>{
     let consulta ={}
     consulta [req.params.key]=req.params.value
@@ -65,10 +69,10 @@ const filtro = (req,res)=>{
         if(!resultado) res.status(202).send({
             mensaje:"No hay piezas registradas en la Base de datos"
         })
-        return res.status(200).send({
-            status:"ok",
+        return res.status(200).send(
+            
             resultado
-        })
+        )
     }).catch((e)=>{
         return res.status(404).send({
             status:"Error",
@@ -155,6 +159,9 @@ const editar = async (req,res)=>{
    
 }//editar
 
+
+
+
 const eliminar = (req,res)=>{
     // let consulta ={}
     // consulta [req.params.key]=req.params.value
@@ -189,4 +196,5 @@ module.exports={
     filtro,
     editar,
     eliminar
+    
 }

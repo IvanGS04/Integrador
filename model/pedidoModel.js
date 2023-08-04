@@ -17,6 +17,10 @@ const pedidoSchema = Schema({
         type:Number,
         required:true,
         unique:true
+    },
+    fecha:{
+        type:Date,
+        default:Date.now
     }
 })
 
