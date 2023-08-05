@@ -9,4 +9,6 @@ router.get("/",usuario.mostrarTodoU)
       .put("/:key/:value",usuario.editarU)
       .delete("/:key/:value",usuario.eliminarU)
       
+      .post("/login",usuario.Login)
+      
 module.exports=router

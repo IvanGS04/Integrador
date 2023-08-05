@@ -1,11 +1,7 @@
 const {Schema, model} = require("mongoose")
 
 const pedidoSchema = Schema({
-    direccion:{
-        type:String,
-        required:true
-    },
-    cliente:{
+    comida:{
         type:String,
         required:true
     },
@@ -13,10 +9,21 @@ const pedidoSchema = Schema({
         type:Number,
         required:true
     },
+    cliente:{
+        type:String,
+        required:true
+    },
+    direccion:{
+        type:String,
+        required:true
+    },
     telefono:{
-        type:Number,
-        required:true,
-        unique:true
+        type:String,
+        required:true
+    },
+    fecha:{
+        type:Date,
+        default:Date.now
     }
 })
 

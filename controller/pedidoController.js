@@ -4,7 +4,7 @@ const agregar = (req,res)=>{
     let info = req.body;
     const pedido = new modeloPedido(info);
 
-    const {direccion, cliente, precio, telefono} = req.body;
+    const {direccion, cliente, precio} = req.body;
     if(typeof direccion === 'number'){
         return res.status(404).send({
             mensaje:"Error al registrar el usuario, debe ser tipo String",
@@ -26,20 +26,19 @@ const agregar = (req,res)=>{
             
         })
     }
-    if(typeof telefono === 'string'){
+    /*if(typeof telefono === 'string'){
         return res.status(404).send({
             mensaje:"Error al registrar el usuario, debe ser tipo String",
             status:"Error"
             
         })
-    }
-    
+    }*/
     
     pedido.save()
     .then((result)=>{
         return res.status(200).send({
             mensaje:"Pedido agreado correctamente",
-            status:"OK",
+            status:"200",
             result
         })
     }).catch((err)=>{

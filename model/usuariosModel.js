@@ -15,13 +15,13 @@ const usuarioSchema = Schema({
         required:true
     },
     Correo:{
-        type : String,
+        type:String,
         unique: true,
-        required: true
+        required:true
     },
     Password:{
         type:String,
-        required: true
+        required:true
     }
 
 })

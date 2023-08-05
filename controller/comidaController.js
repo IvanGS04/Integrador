@@ -9,7 +9,7 @@ const upload = require("../uploads/storage");
 const agregar = (req,res)=>{
     let info = req.body;
     const comida = new modeloComida(info);
-    const {nombre, ingredientes,precio} = req.body;
+    const {nombre, ingredientes} = req.body;
     if(typeof nombre === 'number'){
         return res.status(404).send({
             mensaje:"Error al registrar el usuario, debe ser tipo String",
@@ -40,7 +40,7 @@ const agregar = (req,res)=>{
     .then((result)=>{
         return res.status(200).send({
             mensaje:"Pieza creada correctamente",
-            status:"OK",
+            status:"200",
             result
         })
     }).catch((err)=>{
@@ -77,6 +77,8 @@ const mostrarTodo = (req,res)=>{
     })
 }
 
+
+
 const filtro = (req,res)=>{
     let consulta ={}
     consulta [req.params.key]=req.params.value
@@ -85,10 +87,10 @@ const filtro = (req,res)=>{
         if(!resultado) res.status(202).send({
             mensaje:"No hay piezas registradas en la Base de datos"
         })
-        return res.status(200).send({
-            status:"ok",
+        return res.status(200).send(
+            
             resultado
-        })
+        )
     }).catch((e)=>{
         return res.status(404).send({
             status:"Error",
@@ -175,6 +177,9 @@ const editar = async (req,res)=>{
    
 }//editar
 
+
+
+
 const eliminar = (req,res)=>{
     // let consulta ={}
     // consulta [req.params.key]=req.params.value
@@ -209,4 +214,5 @@ module.exports={
     filtro,
     editar,
     eliminar
+    
 }
