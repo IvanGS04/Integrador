@@ -80,15 +80,13 @@ const mostrarTodo = (req,res)=>{
 
 
 const filtro = (req,res)=>{
-    let consulta ={}
-    consulta [req.params.key]=req.params.value
-    modeloComida.find(consulta)
+    let id =req.params.id
+    modeloComida.findOne({_id:id})
     .then((resultado)=>{
         if(!resultado) res.status(202).send({
-            mensaje:"No hay piezas registradas en la Base de datos"
+            mensaje:"el platillo no se encuentra"
         })
         return res.status(200).send(
-            
             resultado
         )
     }).catch((e)=>{
@@ -98,37 +96,13 @@ const filtro = (req,res)=>{
         })
     })
 }
-const editar = async (req,res)=>{
-    let nuevo = req.body;
-    let paramImg = req.params.image;
-    let id = req.params.id;
-    //const nuevo = req.body;
+const editar = (req,res)=>{
+    const nuevo = req.body;
+    const id = req.params.id;
+    console.log(id);
     console.log(nuevo);
-    let imgUrl = `uploads/img/${paramImg}`;
 
-    if(req.file){
-        const{ filename} = req.file;
-        //comida.setImgUrl(filename);
-        nuevo.imgUrl = filename
-
-        fs.unlink(imgUrl, (err => {
-            if (err){
-                console.log(err);
-                let imgUrl3 = `uploads/img/${filename}`;
-
-                fs.unlink(imgUrl3, (err => {
-                    if (err){
-                        console.log(err);
-                    }
-                    else {
-                      console.log(`Deleted file: ${filename}`);
-                    }}))
-                return res.status(400).send({mensaje:"parametro de imagen invalido"})
-            }
-            else {
-              console.log(`Deleted file: ${paramImg}`);
-
-                        const {nombre, ingredientes,precio} = req.body;
+                        const {nombre, ingredientes} = req.body;
                 if(typeof nombre === 'number'){
                     return res.status(404).send({
                         mensaje:"Error al registrar el usuario, debe ser tipo String",
@@ -165,15 +139,6 @@ const editar = async (req,res)=>{
                       e
                   })
               })
-
-            }
-          }));
-    }else{
-            return res.status(400).send({mensaje:"Imagen faltante"})
-    }
-
-        
-
    
 }//editar
 
