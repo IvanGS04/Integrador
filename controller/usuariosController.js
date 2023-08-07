@@ -154,9 +154,8 @@ const Login = (req,res)=>{
         if(resultado){
             if(resultado.Password == Password){
                 return res.status(202).send({
-                    mensaje:"Usuarios logueado",
-                    status:"OK"
-                    
+                    mensaje:"login succesful",
+                    status:"200"
                 })
 
             }else{

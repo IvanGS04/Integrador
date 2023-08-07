@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/",pedidoC.mostrarTodo)
       .post("/",pedidoC.agregar)
-      .get("/:key/:value",pedidoC.filtro)
+      .get("/filtro/:correo",pedidoC.filtro)
       .put("/:key/:value",pedidoC.editar)
       .delete("/:key/:value",pedidoC.eliminar)
       

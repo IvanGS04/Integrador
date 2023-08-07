@@ -60,9 +60,9 @@ const mostrarTodo = (req,res)=>{
                 status:"OK"
             })
         }
-        return res.status(200).send({
+        return res.status(200).send(
             resultado
-        })
+        )
     }).catch((err)=>{
         return res.status(404).send({
             mensaje:"Error al registrar el pedido",
@@ -73,17 +73,13 @@ const mostrarTodo = (req,res)=>{
 }
 
 const filtro = (req,res)=>{
-    let consulta ={}
-    consulta [req.params.key]=req.params.value
-    modeloPedido.find(consulta)
+    const correo = req.params.correo;
+    modeloPedido.find({cliente:correo})
     .then((resultado)=>{
         if(!resultado) res.status(202).send({
             mensaje:"No hay pedidos registrados en la Base de datos"
         })
-        return res.status(200).send({
-            status:"ok",
-            resultado
-        })
+        return res.status(200).send(resultado)
     }).catch((e)=>{
         return res.status(404).send({
             status:"Error",
